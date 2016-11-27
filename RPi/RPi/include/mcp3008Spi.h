@@ -46,7 +46,6 @@ public:
     int spiWriteRead( unsigned char *data, int length);
     int spiRead( int port);
     double spiReadVolts( int port);
-    static double tenBitToVolts( int tenBitValue);
 
 private:
     unsigned char mode;

@@ -1,4 +1,4 @@
-#include "mcp3008Spi.h"
+#include "../include/mcp3008Spi.h"
 using namespace std;
 /**********************************************************
  * spiOpen() :function is called by the constructor.
@@ -122,11 +122,7 @@ int mcp3008Spi::spiRead( int port){
 }
 
 double mcp3008Spi::spiReadVolts(int port){
-  return tenBitToVolts(spiRead(port));
-}
-
-static double tenBitToVolts(int tenBitValue){
-  return (tenBitValue / 1023.0) * 3.3;
+  return spiRead(port)/1023.0*3.3;
 }
 
 /*************************************************
