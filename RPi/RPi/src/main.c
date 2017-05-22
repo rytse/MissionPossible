@@ -1,5 +1,6 @@
 #include "../include/main.h"
 #include "../include/bcm/bcm2835.h"
+#include "../include/motorcontroller.h"
 
 int main(void) {
 	struct robot_state rs;
@@ -7,7 +8,8 @@ int main(void) {
 	setup(&rs);
 
 	while (1) {
-		update_hw(&rs);
+		/*update_hw(&rs);*/
+		setPin(11, 1026, 0);
 	}
 
 	teardown();
