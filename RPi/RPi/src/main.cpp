@@ -1,5 +1,5 @@
+#include <bcm2835.h>
 #include "../include/main.h"
-#include "../include/bcm/bcm2835.h"
 #include "../include/motorcontroller.h"
 
 int main(void) {
@@ -9,7 +9,7 @@ int main(void) {
 
 	while (1) {
 		/*update_hw(&rs);*/
-		setPin(11, 1026, 0);
+		setPWM(0x70, 11, 4096, 0);
 	}
 
 	teardown();

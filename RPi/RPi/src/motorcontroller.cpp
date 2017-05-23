@@ -1,7 +1,13 @@
+#include <bcm2835.h>
 #include <stdint.h>
-#include "../include/bcm/bcm2835.h"
+#include <algorithm>
+#include "../include/motorcontroller.h"
 
 using namespace std;
+
+char *u16_2_c(uint16_t u16) {
+	return (char *) &u16;
+}
 
 /* write8 function translated from the Adafruit PWM Servo Driver library
 */
@@ -26,19 +32,24 @@ uint8_t read8(uint8_t addr) {
 /* setPWM function translated from the Adafruit PWM Servo Driver library
 */
 void setPWM(uint8_t addr, uint8_t num, uint16_t on, uint16_t off) {
+	char *cp_on = (char *) &on;
+	char *cp_off = (char *) &off;
+
+
 	bcm2835_i2c_begin();
 	bcm2835_i2c_setSlaveAddress(addr);
-	bcm2835_i2c_write(4 * num + LED0_ON_L, 2);
-	bcm2835_i2c_write(on, 2);
-	bcm2835_i2c_write(on >> 8, 2);
-	bcm2835_i2c_write(off, 2);
-	bcm2835_i2c_write(off >> 8, 2);
+	bcm2835_i2c_write(u16_2_c(4 * num + LED0_ON_L), 2);
+	bcm2835_i2c_write(u16_2_c(on), 2);
+	bcm2835_i2c_write(u16_2_c(on >> 8), 2);
+	bcm2835_i2c_write(u16_2_c(off), 2);
+	bcm2835_i2c_write(u16_2_c(off >> 8), 2);
 	bcm2835_i2c_end();
 }
 
+/*
 void setPin(uint8_t num, uint16_t val, bool invert) {
 	// Clamp value between 0 and 4095 inclusive.
-	val = min(val, 4095);
+	val = val <= 4096 ? val : 4096;
 	if (invert) {
 		if (val == 0) {
 			// Special value for signal fully on.
@@ -66,3 +77,4 @@ void setPin(uint8_t num, uint16_t val, bool invert) {
 		}
 	}
 }
+*/

@@ -10,6 +10,18 @@
       <Platform>ARM</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\main.h" />
+    <ClInclude Include="include\motorcontroller.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="readme\readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\bcm\bcm2835.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\motorcontroller.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{2d43e90d-44f0-4603-81be-baba530deb2d}</ProjectGuid>
     <Keyword>Linux</Keyword>
@@ -50,11 +62,6 @@
       <Message>export pin 17 using the gpio utility so that we can execute the blink program without sudo</Message>
     </RemotePostBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
