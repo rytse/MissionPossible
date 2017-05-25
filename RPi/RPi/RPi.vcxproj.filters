@@ -2,14 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="include\main.h" />
-    <ClInclude Include="include\motorcontroller.h" />
+    <ClInclude Include="include\constants.h" />
+    <ClInclude Include="include\motor.h" />
+    <ClInclude Include="include\mp_utils.h" />
+    <ClInclude Include="include\PCA9685.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="readme\readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\motorcontroller.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\bcm\bcm2835.cpp" />
+    <ClCompile Include="src\motor.cpp" />
+    <ClCompile Include="src\mp_utils.cpp" />
+    <ClCompile Include="src\PCA9685.cpp" />
+    <ClCompile Include="src\test_servo.cpp" />
   </ItemGroup>
 </Project>
