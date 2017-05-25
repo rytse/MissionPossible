@@ -2,10 +2,10 @@
 #include "../include/motor.h"
 #include "../include/constants.h"
 
-static Motor left_m;	// left drive motor
-static Motor right_m;	// right drive motor
-static Motor arm_m;		// flag / temperature sensor arm motor
-static Motor turret_m;	// light sensor turret motor
+static Motor left_m (0);	// left drive motor
+static Motor right_m (1);	// right drive motor
+static Motor arm_m (2);		// flag / temperature sensor arm motor
+static Motor turret_m (3);	// light sensor turret motor
 
 int main(void) {
 	struct robot_state rs;
@@ -28,10 +28,12 @@ int main(void) {
 
 /* Initial setup before main loop runs */
 void setup(struct robot_state *rs) {
+	/*
 	left_m = Motor(1);
 	right_m = Motor(2);
 	arm_m = Motor(3);
-	turret_m = Motor(4);
+	turret_m = Motor(0);
+	*/
 
 	rs->left_m_vel = 0;
 	rs->right_m_vel = 0;
