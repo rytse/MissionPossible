@@ -84,7 +84,7 @@ void PCA9685::setPWMFreq(int freq) {
     write_byte(fd, MODE1, newmode);        // go to sleep
     write_byte(fd, PRE_SCALE, prescale);
     write_byte(fd, MODE1, oldmode);
-    usleep(10*1000);
+    //usleep(10*1000);
     write_byte(fd, MODE1, oldmode | 0x80);
 
 		close(fd);
@@ -157,7 +157,7 @@ void PCA9685::write_byte(int fd, uint8_t address, uint8_t data) {
 	buff[1] = data;
 	if (write(fd, buff, sizeof(buff)) != 2) {
 		printf("Failed to write to I2C Slave 0x%x @ register 0x%x [write_byte():write %d]", _i2caddr, address, errno);
-		usleep(5000);
+		//usleep(5000);
 	}else{
 		//printf("Wrote to I2C Slave 0x%x @ register 0x%x [0x%x]\n", _i2caddr, address, data);
 	}
