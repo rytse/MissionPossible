@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include"../include/PCA9685.h"
 
 #define I2C_BUS 1			// the /dev/i2c-1 bus
 #define MC_I2C_ADDR 0x40	// the PCA9685 is configured to use i2c address 0x40

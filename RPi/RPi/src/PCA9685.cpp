@@ -36,7 +36,7 @@
 #include <unistd.h>
 //
 
-#include "PCA9685.h"
+#include "../include/PCA9685.h"
 
 //! Constructor takes bus and address arguments
 /*!
