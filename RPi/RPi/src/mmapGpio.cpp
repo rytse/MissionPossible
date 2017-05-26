@@ -1,4 +1,4 @@
-#include "mmapGpio.h"
+#include "../include/mmapGpio.h"
 
 // GPIO Registers that can be accessed as a part of the class
 const unsigned int mmapGpio::GPFSET0;
