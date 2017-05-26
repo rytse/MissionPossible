@@ -14,11 +14,16 @@ int main(void) {
 
 	while (!rs.stop) {
 
+		rs.left_m_vel = 300;
+		rs.right_m_vel = 300;
+
 		// Test motor stuff
+		/*
 		rs.left_m_vel += 10;
 		rs.right_m_vel += 10;
 		rs.arm_go_up = 1;
 		rs.turret_turn = 1;
+		*/
 
 		update_hw(&rs);
 	}
