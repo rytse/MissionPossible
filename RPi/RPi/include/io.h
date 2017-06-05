@@ -10,6 +10,8 @@ struct teleop_input {
 
 	bool arm_up_start;
 	bool arm_down_start;
+
+	bool stop;
 };
 
-void read_file(teleop_input pair);
+void read_file(teleop_input *ti);
