@@ -1,13 +1,11 @@
 #include "../include/encoder.h"
-#include "../include/mmapGpio.h"
+#include "../include/rotaryencoder.h"
 
 Encoder::Encoder(short _p_i, short _p_q) {
-	gpio = new mmapGpio();
-	c_i = c_q = p_i = p_q = 0;
+	setupencoder(&encoder, _p_i, _p_q);
 }
 
-void Encoder::update_iq(void) {
-	p_i = c_i;
-	p_q = c_q;
-	c_i = gpio->readPin(p_i);
+long Encoder::get_counts(void) {
+	return encoder.value;
 }
+
