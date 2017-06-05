@@ -8,17 +8,12 @@ void read_file(teleop_input *ti) {
 	std::ifstream _file (IN_FILE_NAME);
 	std::string _line;
 
-	getline(_file, _line);
-	ti->left_vel = stod(_line);
-	getline(_file, _line);
-	ti->right_vel = stod(_line);
-	getline(_file, _line);
-	ti->turret_start = stoi(_line);
-	getline(_file, _line);
-	ti->arm_up_start = stoi(_line);
-	getline(_file, _line);
-	ti->arm_down_start = stoi(_line);
-	getline(_file, _line);
-	ti->stop = stoi(_line);
+	_file >> ti->left_vel;
+	_file >> ti->right_vel;
+	_file >> ti->turret_start;
+	_file >> ti->arm_up_start;
+	_file >> ti->arm_down_start;
+	_file >> ti->stop;
+
 	_file.close();
 }

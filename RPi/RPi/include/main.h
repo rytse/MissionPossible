@@ -24,4 +24,5 @@ struct robot_state {
 int main(void);
 void setup(struct robot_state *);
 void teardown(void);
-void update_hw(struct robot_state *);
+void update_rs(struct robot_state *rs);
+void update_hw(struct robot_state *rs);
