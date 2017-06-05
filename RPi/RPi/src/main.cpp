@@ -1,31 +1,21 @@
 #include "../include/main.h"
 #include "../include/motor.h"
 #include "../include/constants.h"
+#include "../include/io.h"
 
-static Motor left_m (0);	// left drive motor
-static Motor right_m (1);	// right drive motor
+static Motor left_m (13);	// left drive motor
+static Motor right_m (15);	// right drive motor
 static Motor arm_m (2);		// flag / temperature sensor arm motor
 static Motor turret_m (3);	// light sensor turret motor
 
 int main(void) {
-	struct robot_state rs;
+	struct robot_state _rs;
 
-	setup(&rs);
+	setup(&_rs);
 
-	while (!rs.stop) {
-
-		rs.left_m_vel = 300;
-		rs.right_m_vel = 300;
-
-		// Test motor stuff
-		/*
-		rs.left_m_vel += 10;
-		rs.right_m_vel += 10;
-		rs.arm_go_up = 1;
-		rs.turret_turn = 1;
-		*/
-
-		update_hw(&rs);
+	while (!_rs.stop) {
+		update_rs(&_rs);
+		update_hw(&_rs);
 	}
 
 	teardown();
@@ -51,11 +41,20 @@ void setup(struct robot_state *rs) {
 	rs->stop = 0;
 }
 
-/* Post-program tear down */
+/*! Post-program tear down */
 void teardown(void) {
 }
 
-/* Run every loop to actuate the hardware based on the current robot state machine */
+/*! Runs every loop to read input and update the robot state machine in software.
+	Encapsulated from actual harware modifications.
+*/
+void update_rs(struct robot_state *rs) {
+	static teleop_input _ip;
+	read_file(_ip);
+	rs->left_m_vel = _ip.left_vel;
+	rs->right_m_vel = _ip.right_vel;
+}
+/*! Run every loop to actuate the hardware based on the current robot state machine */
 void update_hw(struct robot_state *rs) {
 	left_m.setVel(rs->left_m_vel);
 	right_m.setVel(rs->right_m_vel);
