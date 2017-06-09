@@ -32,7 +32,8 @@ void update_hw(struct robot_state *rs) {
 	rs.temp_sensor_reading = adc.spiRead(TEMP_SENSOR_PORT);
 	rs.left_light_reading = adc.spiRead(LEFT_LIGHT_PORT);
 	rs.right_light_reading = adc.spiRead(RIGHT_LIGHT_PORT);
-	cout << "temp: " << rs.temp_sensor_reading;
-	cout << "left light: " << rs.left_light_reading;
-	cout << "right light: " << rs.right_light_reading;
+	cout << "temp: " << rs.temp_sensor_reading << endl;
+	cout << "temp in volts: " << mcp3008Spi::tenBitToVolts(rs.temp_sensor_reading) << endl;
+	cout << "left light: " << rs.left_light_reading << endl;
+	cout << "right light: " << rs.right_light_reading << endl;
 }

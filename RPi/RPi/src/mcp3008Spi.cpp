@@ -121,6 +121,14 @@ int mcp3008Spi::spiRead( int port){
   return a2dVal;
 }
 
+double mcp3008Spi::spiReadVolts(int port){
+  return tenBitToVolts(spiRead(port));
+}
+
+static double tenBitToVolts(int tenBitValue){
+  return (tenBitValue / 1023.0) * 3.3;
+}
+
 /*************************************************
  * Default constructor. Set member variables to
  * default values and then call spiOpen()
