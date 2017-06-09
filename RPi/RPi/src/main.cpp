@@ -1,12 +1,18 @@
 #include "../include/main.h"
 #include "../include/motor.h"
+#include "../include/motorshield.h"
 #include "../include/constants.h"
 #include "../include/io.h"
 
+/*
 static Motor left_m (13);	// left drive motor
 static Motor right_m (15);	// right drive motor
 static Motor arm_m (2);		// flag / temperature sensor arm motor
 static Motor turret_m (3);	// light sensor turret motor
+*/
+
+static Motorshield ms(15, 13, 11);
+
 
 int main(void) {
 	struct robot_state _rs;
@@ -88,6 +94,7 @@ void update_rs(struct robot_state *rs) {
 
 /*! Run every loop to actuate the hardware based on the current robot state machine */
 void update_hw(struct robot_state *rs) {
+	/*
 	left_m.setVel(rs->left_m_vel);
 	right_m.setVel(rs->right_m_vel);
 
@@ -100,6 +107,9 @@ void update_hw(struct robot_state *rs) {
 	} else if (rs->arm_go_down) {
 		arm_m.setVel(ARM_VEL * -1);
 	}
+	*/
+
+	ms.set_vel(rs->left_m_vel);
 
 	// TODO read encoders
 }
